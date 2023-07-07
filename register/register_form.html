@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>Register Page</title>
     <style>
         body {
             display: flex;
@@ -58,16 +58,15 @@
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
-        <form method="POST" action= home.php>
+        <h2>Register</h2>
+        <form method="post" action="register.php">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
-
+            <input type="text" name="username" required><br><br>
+            
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
-
-            <input type="submit" id="login_button" value="Login">
-            <input type="submit" id="register_button" value="Register" onclick="window.location.href='/Register/register_form.html';">
+            <input type="password" name="password" required><br><br>
+            
+            <input type="submit" value="Register">
         </form>
     </div>
 </body>

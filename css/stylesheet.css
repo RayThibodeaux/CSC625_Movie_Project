@@ -2,6 +2,12 @@ html * {
     font-family: Play;
 }
 
+.login-container {
+    
+    align-items: center;
+    height: 100vh;
+}
+
 .lt-purple {
     background-color: mediumpurple;
 }
@@ -43,12 +49,25 @@ td {
     float: right;
 }
 
+.login-text {
+    border-radius: 0.5em;
+    width: 200px;
+}
+
 .rcorner{
     border-radius: 25px;
     background: mediumpurple;
     padding: 20px;
     width: 200px;
     height: 530px;
+}
+
+.login_box {
+    border-radius: 25px;
+    background: mediumpurple;
+    padding: 20px;
+    width: 200px;
+    height: 300px;
 }
 
 .logo-img {
