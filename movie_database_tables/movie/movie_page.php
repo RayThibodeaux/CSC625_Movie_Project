@@ -23,7 +23,7 @@
 </head>
 <body style="background-color:  #461D7C" ;>
 
-<form id="director_form">
+<form id="movie_form">
     <div class="container-fluid" id="movie_page">
         <!-- SEARCH BAR ROW ################################################################## -->
         <div class="row between-xs" id="index_header">
@@ -36,7 +36,12 @@
                 <?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/movie_database_tables/movie/movie_buttons.php'); ?>
             </div>
 
+            <div class="col-sm-7 rcorner">
+                <?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/movie_database_tables/movie/movie_input_boxes.php'); ?>
+            </div>
+
         </div>
+    </div>
 </form>
 <img src="../../img/lsus-logo.png" style="position:absolute;bottom:-125px;left:100px;z-index:1" height="120" />
-<script><?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/js/ajax.js'); ?></script>
+<script><?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/js/movie_ajax.js'); ?></script>

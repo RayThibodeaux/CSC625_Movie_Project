@@ -71,14 +71,14 @@
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form method="POST" action= home.php>
+        <form id="login_form">
             <label for="username">Username:</label>
-            <input type="text" name="username"><br><br>
+            <input type="text" id="input_username" name="input_username"><br><br>
 
             <label for="password">Password:</label>
-            <input type="password" name="password"><br><br>
+            <input type="password" id="input_password" name="input_password"><br><br>
 
-            <input type="submit" value="Login">
+            <input type="submit" id="login" value="Login">
             <input type="submit" id="register" value="Register">
         </form>
     </div>
