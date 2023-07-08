@@ -2,7 +2,7 @@ $(document).ready(function (){
     
     // ########################################################################
     // ########################################################################
-    // movie PAGE BUTTON CLICKS
+    // MOVIE PAGE BUTTON CLICKS
     // ########################################################################
     // ########################################################################
 
@@ -19,32 +19,41 @@ $(document).ready(function (){
     // To add a single movie 
     $('#add_movie').on('click', function (event) {
         url_end = '?mode=insert';
-        let inputmovieID = $('#input_movie_id').val();
-        let inputmovieName = $('#input_movie_name').val();
-        let inputmovieAwardID = $('#input_movie_award_id').val();
+        let inputMovieID = $('#input_movie_id').val();
+        let inputMovieTitle = $('#input_movie_title').val();
+        let inputMovieDesc = $('#input_movie_desc').val();
+        let inputGenreID = $('#input_movie_genre_id').val();
+        let inputMovieReleaseDate = $('#input_movie_release_date').val();
+        let inputMovieRating = $('#input_movie_rating').val();
 
-        executemovieSQL('POST','insert',inputmovieID,inputmovieName,inputmovieAwardID,url_end);
+        executemovieSQL('POST','insert',inputMovieID,inputMovieTitle,inputMovieDesc,
+                        inputGenreID,inputMovieReleaseDate,inputMovieRating,url_end);
         movieClearAll();
     });
 
     // Delete movie
     $('#delete_movie').on('click', function(event) {
+        url_end = '?mode=delete'
         let header_movie_id = $('#header_movie_id').val();
         let header_movie_award_id = $('#header_movie_award_id').val();
 
-        window.open('/movie_project/movie_database_tables/movie/movie_sql_processor.php?mode=delete&header_movie_id='+header_movie_id
-                    + '&header_movie_award_id='+header_movie_award_id);
+        window.open('/movie_project/movie_database_tables/movie/movie_sql_processor.php'+
+            url_end+'&header_movie_id='+header_movie_id+'&header_movie_award_id='+header_movie_award_id);
         movieClearAll();
     });
 
     // Update movie
     $('#update_movie').on('click', function(event) {
         url_end = '?mode=update';
-        let inputmovieID = $('#input_movie_id').val();
-        let inputmovieName = $('#input_movie_name').val();
-        let inputmovieAwardID = $('#input_movie_award_id').val();
+        let inputMovieID = $('#input_movie_id').val();
+        let inputMovieTitle = $('#input_movie_name').val();
+        let inputMovieDesc = $('#input_movie_desc').val();
+        let inputGenreID = $('#input_movie_genre_id').val();
+        let inputMovieReleaseDate = $('#input_movie_release_date').val();
+        let inputMovieRating = $('#input_movie_rating').val();
 
-        executemovieSQL('POST','update',inputmovieID,inputmovieName,inputmovieAwardID,url_end);
+        executeMovieSQL('POST','update',inputMovieID,inputMovieTitle,inputMovieDesc,inputGenreID,inputMovieReleaseDate,
+                        inputMovieRating,url_end);
         movieClearAll();
     });
     
@@ -52,7 +61,7 @@ $(document).ready(function (){
 
     // ########################################################################
     // movie PAGE BUTTON CLICKS
-    function executemovieSQL(type, mode, movieID,movieName,movieAwardID,url_end) {
+    function executeMovieSQL(type,movieID,movieTitle,movieDesc,movieGenreID,movieReleaseDate,movieRating,url_end) {
         $('#movie_form').on('submit', function (event) {
             // #######################################################################
             // VARIABLES FOR INSERTING INTO DATABASE
@@ -66,8 +75,12 @@ $(document).ready(function (){
                 async: false,
                 data: {
                     movieID:movieID,
-                    movieName: movieName,
-                    movieAwardID: movieAwardID
+                    movieTitle: movieTitle,
+                    movieDesc:movieDesc,
+                    movieGenreID:movieGenreID,
+                    movieReleaseDate:movieReleaseDate,
+                    movieRating:movieRating
+                    
                 },
                 success: function (response) {
                 location.reload();
