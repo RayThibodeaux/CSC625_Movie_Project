@@ -1,7 +1,7 @@
 <style>
     <?php require($_SERVER['DOCUMENT_ROOT'].'/movie_project/css/stylesheet.css'); ?>
 </style>
-<?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/movie_database_tables/movie/movie_processor.php'); ?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/movie_database_tables/movie/movie_sql_processor.php'); ?>
 <!doctype html>
 <html lang="en">
 <head>

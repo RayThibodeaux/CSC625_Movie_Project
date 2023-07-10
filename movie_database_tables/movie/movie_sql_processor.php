@@ -11,8 +11,11 @@ global $MSSQL_CONNECTION;
 
 // POSTS
 (isset($_POST['movieID'])) ? $movie_id = $_POST['movieID'] : $movie_id = '';
-(isset($_POST['movieName'])) ? $movie_name = $_POST['movieName'] : $movie_name = '';
-(isset($_POST['movieAwardID'])) ? $movie_award_id = $_POST['movieAwardID'] : $movie_award_id = '';
+(isset($_POST['movieTitle'])) ? $movie_title = $_POST['movieTitle'] : $movie_title = '';
+(isset($_POST['movieDesc'])) ? $movie_desc = $_POST['movieDesc'] : $movie_desc = '';
+(isset($_POST['movieGenreID'])) ? $movie_genre_id = $_POST['movieGenreID'] : $movie_genre_id = '';
+(isset($_POST['movieReleaseDate'])) ? $movie_release_date = $_POST['movieReleaseDate'] : $movie_release_date = '';
+(isset($_POST['movieRating'])) ? $movie_rating = $_POST['movieRating'] : $movie_rating = '';
 // #########################################################################################
 // POST Variables
 
@@ -25,11 +28,11 @@ if(isset($mode))
 
             $movie_name = strtoupper($movie_name);
 
-            $sql = "INSERT INTO movie (movie_ID, movie_NAME, movie_AWARD_ID)";
-            $sql .= "VALUES (?,?,?)";
+            $sql = "INSERT INTO MOVIE (MOVIE_ID, TITLE, DESCRIPTION, GENRE_ID, RELEASE_DATE, RATING)";
+            $sql .= "VALUES (?,?,?,?,?,?)";
 
             // Prepare sql statement
-            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql,array(&$movie_id, &$movie_name, &$movie_award_id));
+            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql,array(&$movie_id, &$movie_title, &$movie_desc, &$movie_genre_id, &$movie_release_date, &$movie_rating));
 
             // Execute statement
             if(sqlsrv_execute($stmt) === false)
@@ -45,12 +48,11 @@ if(isset($mode))
         case 'delete':
             global $MSSQL_CONNECTION;
 
-            $sql = "DELETE FROM movie ";
-            $sql .= "WHERE movie_ID = ? ";
-            $sql .= "AND movie_AWARD_ID = ?";
+            $sql = "DELETE FROM MOVIE ";
+            $sql .= "WHERE MOVIE_ID = ? ";
 
             // Prepare statement
-            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$header_movie_id, &$header_movie_award_id));
+            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$movie_id));
 
             // Execute statement
             if(sqlsrv_execute($stmt) === false)
@@ -66,10 +68,11 @@ if(isset($mode))
         case 'update':
             global $MSSQL_CONNECTION;
 
-            $sql = "UPDATE movie SET movie_NAME = ?, movie_AWARD_ID = ? WHERE movie_ID = ?";
+            $sql = "UPDATE MOVIE SET TITLE = ?, DESCRIPTION = ?, GENRE_ID = ?,
+                RELEASE_DATE = ?, RATING = ? WHERE MOVIE_ID = ?";
             
             // Prepare sql
-            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$movie_name, &$movie_award_id, &$movie_id));
+            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$movie_id, &$movie_title, &$movie_desc, &$movie_genre_id, &$movie_release_date, &$movie_rating));
 
             // Execute sql
             if(sqlsrv_execute($stmt) === false)

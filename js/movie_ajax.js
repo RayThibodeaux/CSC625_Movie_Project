@@ -13,7 +13,7 @@ $(document).ready(function (){
 
     // To select a single movie via movie_id from header file
     $('#find_movie').on('click', function (event) {
-        window.open('/movie_project/movie_database_tables/movie/movie_sql_results.php?mode=single_select&header_movie_id=');
+        window.open('/movie_project/movie_database_tables/movie/movie_sql_results.php?mode=single_select&header_movie_id='+$('#header_movie_id').val());
     });
 
     // To add a single movie 
@@ -56,6 +56,17 @@ $(document).ready(function (){
                         inputMovieRating,url_end);
         movieClearAll();
     });
+
+    // ########################################################################
+    // ########################################################################
+    // NAVIGATION
+    // ########################################################################
+    // ########################################################################
+
+     // Navigate to ACTOR PAGE
+    $('#view_actor').on('click', function (event) {
+        window.open('/movie_project/movie_database_tables/actor/actor_page.php');
+    });
     
 });
 
@@ -92,8 +103,9 @@ $(document).ready(function (){
     function movieClearAll()
     {
         $('#input_movie_id').val('');
-        $('#input_movie_name').val('');
-        $('#input_movie_award_id').val('');
-        $('#header_movie_id').val('');
-        $('#header_movie_award_id').val('');
+        $('#input_movie_title').val('');
+        $('#input_movie_desc').val('');
+        $('#input_movie_genre_id').val('');
+        $('#input_movie_release_date').val('');
+        $('#input_movie_rating').val('');
     }
