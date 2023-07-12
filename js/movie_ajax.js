@@ -16,8 +16,32 @@ $(document).ready(function (){
         window.open('/movie_project/movie_database_tables/movie/movie_sql_results.php?mode=single_select&header_movie_id='+$('#header_movie_id').val());
     });
 
-    // To add a single movie 
-    $('#add_movie').on('click', function (event) {
+    // Delete movie
+    $('#delete_movie').on('click', function(event) {
+        url_end = '?mode=delete'
+        let header_movie_id = $('#header_movie_id').val();
+
+        window.open('/movie_project/movie_database_tables/movie/movie_sql_processor.php'+
+            url_end+'&header_movie_id='+header_movie_id);
+    });
+
+    // Update movie
+    $('#update_movie').on('click', function(event) {
+        url_end = '?mode=update';
+        let inputMovieID = $('#input_movie_id').val();
+        let inputMovieTitle = $('#input_movie_title').val();
+        let inputMovieDesc = $('#input_movie_desc').val();
+        let inputGenreID = $('#input_movie_genre_id').val();
+        let inputMovieReleaseDate = $('#input_movie_release_date').val();
+        let inputMovieRating = $('#input_movie_rating').val();
+
+        executeMovieSQL('POST',inputMovieID,inputMovieTitle,inputMovieDesc,inputGenreID,inputMovieReleaseDate,
+                        inputMovieRating,url_end);
+        movieClearAll();
+    });
+
+     // Insert movie
+     $('#add_movie').on('click', function(event) {
         url_end = '?mode=insert';
         let inputMovieID = $('#input_movie_id').val();
         let inputMovieTitle = $('#input_movie_title').val();
@@ -26,33 +50,7 @@ $(document).ready(function (){
         let inputMovieReleaseDate = $('#input_movie_release_date').val();
         let inputMovieRating = $('#input_movie_rating').val();
 
-        executemovieSQL('POST','insert',inputMovieID,inputMovieTitle,inputMovieDesc,
-                        inputGenreID,inputMovieReleaseDate,inputMovieRating,url_end);
-        movieClearAll();
-    });
-
-    // Delete movie
-    $('#delete_movie').on('click', function(event) {
-        url_end = '?mode=delete'
-        let header_movie_id = $('#header_movie_id').val();
-        let header_movie_award_id = $('#header_movie_award_id').val();
-
-        window.open('/movie_project/movie_database_tables/movie/movie_sql_processor.php'+
-            url_end+'&header_movie_id='+header_movie_id+'&header_movie_award_id='+header_movie_award_id);
-        movieClearAll();
-    });
-
-    // Update movie
-    $('#update_movie').on('click', function(event) {
-        url_end = '?mode=update';
-        let inputMovieID = $('#input_movie_id').val();
-        let inputMovieTitle = $('#input_movie_name').val();
-        let inputMovieDesc = $('#input_movie_desc').val();
-        let inputGenreID = $('#input_movie_genre_id').val();
-        let inputMovieReleaseDate = $('#input_movie_release_date').val();
-        let inputMovieRating = $('#input_movie_rating').val();
-
-        executeMovieSQL('POST','update',inputMovieID,inputMovieTitle,inputMovieDesc,inputGenreID,inputMovieReleaseDate,
+        executeMovieSQL('POST',inputMovieID,inputMovieTitle,inputMovieDesc,inputGenreID,inputMovieReleaseDate,
                         inputMovieRating,url_end);
         movieClearAll();
     });

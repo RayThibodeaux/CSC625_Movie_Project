@@ -23,7 +23,7 @@ $(document).ready(function (){
         let inputActorName = $('#input_actor_name').val();
         let inputActorAwardID = $('#input_actor_award_id').val();
 
-        executeActorSQL('POST','insert',inputActorID,inputActorName,inputActorAwardID,url_end);
+        executeActorSQL('POST',inputActorID,inputActorName,inputActorAwardID,url_end);
         actorClearAll();
     });
 
@@ -44,15 +44,25 @@ $(document).ready(function (){
         let inputActorName = $('#input_actor_name').val();
         let inputActorAwardID = $('#input_actor_award_id').val();
 
-        executeActorSQL('POST','update',inputActorID,inputActorName,inputActorAwardID,url_end);
+        executeActorSQL('POST',inputActorID,inputActorName,inputActorAwardID,url_end);
         actorClearAll();
+    });
+
+    // ########################################################################
+    // ########################################################################
+    // NAVIGATION
+    // ########################################################################
+    // ########################################################################    
+     // Navigate to ACTOR PAGE
+     $('#view_movie').on('click', function (event) {
+        window.open('/movie_project/movie_database_tables/movie/movie_page.php');
     });
     
 });
 
     // ########################################################################
     // ACTOR PAGE BUTTON CLICKS
-    function executeActorSQL(type, mode, actorID,actorName,actorAwardID,url_end) {
+    function executeActorSQL(type,actorID,actorName,actorAwardID,url_end) {
         $('#actor_form').on('submit', function (event) {
             // #######################################################################
             // VARIABLES FOR INSERTING INTO DATABASE

@@ -6,16 +6,15 @@ global $MSSQL_CONNECTION;
 
 // GETS
 (isset($_GET['header_movie_id'])) ? $header_movie_id = $_GET['header_movie_id'] : $header_movie_id = ''; 
-(isset($_GET['header_movie_award_id'])) ? $header_movie_award_id = $_GET['header_movie_award_id'] : $header_movie_award_id = '';
 (isset($_GET['mode'])) ? $mode = $_GET['mode'] : $mode = ''; 
 
 // POSTS
-(isset($_POST['movieID'])) ? $movie_id = $_POST['movieID'] : $movie_id = '';
-(isset($_POST['movieTitle'])) ? $movie_title = $_POST['movieTitle'] : $movie_title = '';
-(isset($_POST['movieDesc'])) ? $movie_desc = $_POST['movieDesc'] : $movie_desc = '';
-(isset($_POST['movieGenreID'])) ? $movie_genre_id = $_POST['movieGenreID'] : $movie_genre_id = '';
+(isset($_POST['movieID']))          ? $movie_id =           $_POST['movieID'] : $movie_id = '';
+(isset($_POST['movieTitle']))       ? $movie_title =        $_POST['movieTitle'] : $movie_title = '';
+(isset($_POST['movieDesc']))        ? $movie_desc =         $_POST['movieDesc'] : $movie_desc = '';
+(isset($_POST['movieGenreID']))     ? $movie_genre_id =     $_POST['movieGenreID'] : $movie_genre_id = '';
 (isset($_POST['movieReleaseDate'])) ? $movie_release_date = $_POST['movieReleaseDate'] : $movie_release_date = '';
-(isset($_POST['movieRating'])) ? $movie_rating = $_POST['movieRating'] : $movie_rating = '';
+(isset($_POST['movieRating']))      ? $movie_rating =       $_POST['movieRating'] : $movie_rating = '';
 // #########################################################################################
 // POST Variables
 
@@ -25,8 +24,8 @@ if(isset($mode))
     {
         case 'insert':
             global $MSSQL_CONNECTION;
-
-            $movie_name = strtoupper($movie_name);
+            $movie_title = strtoupper($movie_title);
+            $movie_desc = strtoupper($movie_desc);
 
             $sql = "INSERT INTO MOVIE (MOVIE_ID, TITLE, DESCRIPTION, GENRE_ID, RELEASE_DATE, RATING)";
             $sql .= "VALUES (?,?,?,?,?,?)";
@@ -48,8 +47,8 @@ if(isset($mode))
         case 'delete':
             global $MSSQL_CONNECTION;
 
-            $sql = "DELETE FROM MOVIE ";
-            $sql .= "WHERE MOVIE_ID = ? ";
+            $sql = "DELETE FROM MOVIE";
+            $sql .= "WHERE MOVIE_ID = ?";
 
             // Prepare statement
             $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$movie_id));

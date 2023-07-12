@@ -68,6 +68,7 @@
 
                 $sql = "UPDATE ACTOR SET ACTOR_NAME = ?, ACTOR_AWARD_ID = ? WHERE ACTOR_ID = ?";
                 
+                $actor_name = strtoupper($actor_name);
                 // Prepare sql
                 $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$actor_name, &$actor_award_id, &$actor_id));
 
