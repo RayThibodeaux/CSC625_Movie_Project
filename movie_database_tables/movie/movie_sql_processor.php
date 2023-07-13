@@ -47,11 +47,11 @@ if(isset($mode))
         case 'delete':
             global $MSSQL_CONNECTION;
 
-            $sql = "DELETE FROM MOVIE";
+            $sql = "DELETE FROM MOVIE ";
             $sql .= "WHERE MOVIE_ID = ?";
 
             // Prepare statement
-            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$movie_id));
+            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$header_movie_id));
 
             // Execute statement
             if(sqlsrv_execute($stmt) === false)
@@ -71,8 +71,7 @@ if(isset($mode))
                 RELEASE_DATE = ?, RATING = ? WHERE MOVIE_ID = ?";
             
             // Prepare sql
-            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$movie_id, &$movie_title, &$movie_desc, &$movie_genre_id, &$movie_release_date, &$movie_rating));
-
+            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$movie_title, &$movie_desc, &$movie_genre_id, &$movie_release_date, &$movie_rating,&$header_movie_id));
             // Execute sql
             if(sqlsrv_execute($stmt) === false)
             {

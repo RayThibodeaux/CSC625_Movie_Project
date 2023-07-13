@@ -26,16 +26,18 @@ $(document).ready(function (){
     });
 
     // Update movie
+    // Select by header id, input movie id is no
     $('#update_movie').on('click', function(event) {
         url_end = '?mode=update';
-        let inputMovieID = $('#input_movie_id').val();
+        let headerMovieID = $('#header_movie_id').val();
         let inputMovieTitle = $('#input_movie_title').val();
         let inputMovieDesc = $('#input_movie_desc').val();
         let inputGenreID = $('#input_movie_genre_id').val();
         let inputMovieReleaseDate = $('#input_movie_release_date').val();
         let inputMovieRating = $('#input_movie_rating').val();
+        mode = 'update';
 
-        executeMovieSQL('POST',inputMovieID,inputMovieTitle,inputMovieDesc,inputGenreID,inputMovieReleaseDate,
+        executeMovieSQL('POST',mode,headerMovieID,inputMovieTitle,inputMovieDesc,inputGenreID,inputMovieReleaseDate,
                         inputMovieRating,url_end);
         movieClearAll();
     });
@@ -50,7 +52,7 @@ $(document).ready(function (){
         let inputMovieReleaseDate = $('#input_movie_release_date').val();
         let inputMovieRating = $('#input_movie_rating').val();
 
-        executeMovieSQL('POST',inputMovieID,inputMovieTitle,inputMovieDesc,inputGenreID,inputMovieReleaseDate,
+        executeMovieSQL('POST','',inputMovieID,inputMovieTitle,inputMovieDesc,inputGenreID,inputMovieReleaseDate,
                         inputMovieRating,url_end);
         movieClearAll();
     });
@@ -70,11 +72,20 @@ $(document).ready(function (){
 
     // ########################################################################
     // movie PAGE BUTTON CLICKS
-    function executeMovieSQL(type,movieID,movieTitle,movieDesc,movieGenreID,movieReleaseDate,movieRating,url_end) {
+    function executeMovieSQL(type,mode,movieID,movieTitle,movieDesc,movieGenreID,movieReleaseDate,movieRating,url_end) {
         $('#movie_form').on('submit', function (event) {
             // #######################################################################
             // VARIABLES FOR INSERTING INTO DATABASE
-            event.stopImmediatePropagation();
+
+            if(mode == 'update')
+            {
+                url_end += '&header_movie_id='+movieID;
+            }
+
+            
+
+            // event.stopImmediatePropagation();
+            event.preventDefault();
     
             $.ajax({
                 crossOrigin: true,
@@ -93,7 +104,11 @@ $(document).ready(function (){
                 },
                 success: function (response) {
                 location.reload();
-                }
+                },
+                error: function (xhr, status, error) {
+                    console.error('An error occurred:', error);
+                    alert('An error occurred while processing the request.');
+                  }
             });
         });
     }

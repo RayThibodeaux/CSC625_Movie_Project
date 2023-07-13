@@ -18,7 +18,7 @@
 </button>
 
 <!--EDIT MOVIE ############################################################ -->
-<button class="button btn-warning btn-primary-spacing height" type="submit" id="edit_movie">
+<button class="button btn-warning btn-primary-spacing height" type="submit" id="update_movie">
     <span style="font-size: 15px; font-weight: bold">EDIT MOVIE</span>
 </button>
 
