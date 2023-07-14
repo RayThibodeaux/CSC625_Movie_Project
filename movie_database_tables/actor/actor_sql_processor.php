@@ -66,11 +66,16 @@
             case 'update':
                 global $MSSQL_CONNECTION;
 
-                $sql = "UPDATE ACTOR SET ACTOR_NAME = ?, ACTOR_AWARD_ID = ? WHERE ACTOR_ID = ?";
-                
-                $actor_name = strtoupper($actor_name);
+                if(!empty($actor_name)){ $updates[] = 'ACTOR_NAME = '."'".strtoupper($actor_name)."'"; }
+                if(!empty($actor_award_id)){ $updates[] = 'ACTOR_AWARD_ID = '."'".$actor_award_id."'"; }
+
+                if(!empty($updates))
+                {
+                    $sql = "UPDATE ACTOR SET ".implode(',',$updates)." WHERE ACTOR_ID = ".$_GET['header_actor_id'];
+                }
+
                 // Prepare sql
-                $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$actor_name, &$actor_award_id, &$actor_id));
+                $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql);
 
                 // Execute sql
                 if(sqlsrv_execute($stmt) === false)

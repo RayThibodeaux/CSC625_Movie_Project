@@ -74,19 +74,15 @@ $(document).ready(function (){
     // movie PAGE BUTTON CLICKS
     function executeMovieSQL(type,mode,movieID,movieTitle,movieDesc,movieGenreID,movieReleaseDate,movieRating,url_end) {
         $('#movie_form').on('submit', function (event) {
+
             // #######################################################################
             // VARIABLES FOR INSERTING INTO DATABASE
-
             if(mode == 'update')
             {
                 url_end += '&header_movie_id='+movieID;
             }
-
-            
-
             // event.stopImmediatePropagation();
             event.preventDefault();
-    
             $.ajax({
                 crossOrigin: true,
                 url: '/movie_project/movie_database_tables/movie/movie_sql_processor.php'+url_end,
@@ -104,11 +100,7 @@ $(document).ready(function (){
                 },
                 success: function (response) {
                 location.reload();
-                },
-                error: function (xhr, status, error) {
-                    console.error('An error occurred:', error);
-                    alert('An error occurred while processing the request.');
-                  }
+                }
             });
         });
     }

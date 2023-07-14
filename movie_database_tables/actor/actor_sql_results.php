@@ -38,7 +38,7 @@
     switch ($_GET['mode']) {
         
         case 'select':
-            $sql = "SELECT ACTOR_ID, ACTOR_NAME, ACTOR_AWARD_ID FROM ACTOR";
+            $sql = "EXEC sp_select_all_actors";
 
             $sql_query = sqlsrv_query($MSSQL_CONNECTION, $sql);
 
@@ -58,16 +58,24 @@
 
         case 'single_select':
 
-            $sql_results = array();
                 global $MSSQL_CONNECTION;
+            
+                // Get params and execute select single actor proc
 
-                $sql = "SELECT ACTOR_ID, ACTOR_NAME, ACTOR_AWARD_ID
-                    FROM ACTOR
-                    WHERE ACTOR_ID = ".$header_actor_id;
+                $sql = "EXEC sp_select_single_actor @ACTOR_ID = ?";
 
-                $sql_query = sqlsrv_query($MSSQL_CONNECTION, $sql);
-                
-                while($row = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC))
+                $sql_stmnt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$header_actor_id));
+
+                if($sql_stmnt === false)
+                {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+
+                if(sqlsrv_execute($sql_stmnt) === false)
+                {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+                while($row = sqlsrv_fetch_array($sql_stmnt, SQLSRV_FETCH_ASSOC))
                 {
                     print('<tr>');
                     print('<td>' . $row['ACTOR_ID'] . '</td>');
@@ -76,7 +84,7 @@
                     print('</tr>');
                 }
 
-                sqlsrv_free_stmt($sql_query);
+                sqlsrv_free_stmt($sql_stmnt);
                 sqlsrv_close($MSSQL_CONNECTION);
                 break;
 

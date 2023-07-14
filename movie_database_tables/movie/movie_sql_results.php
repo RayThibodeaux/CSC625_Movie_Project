@@ -11,7 +11,7 @@
         .topborder { border-top: 1px solid black; }
     </style>
     <head>
-        <title>ALL ACTORS</title>
+        <title>ALL MOVIES</title>
     </head>
     <body style="background-color: #461D7C;">
     <p style="color: gold; text-align: center">****************************** AWARD WINNING MOVIES SYSTEM ******************************</p>

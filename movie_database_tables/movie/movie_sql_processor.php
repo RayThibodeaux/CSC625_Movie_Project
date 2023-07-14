@@ -67,11 +67,18 @@ if(isset($mode))
         case 'update':
             global $MSSQL_CONNECTION;
 
-            $sql = "UPDATE MOVIE SET TITLE = ?, DESCRIPTION = ?, GENRE_ID = ?,
-                RELEASE_DATE = ?, RATING = ? WHERE MOVIE_ID = ?";
-            
+            if(!empty($movie_title)){ $updates[] =  'TITLE = '."'".strtoupper($movie_title)."'"; }
+            if(!empty($movie_desc)){ $updates[] = 'DESCRIPTION = '."'".strtoupper($movie_desc)."'"; }
+            if(!empty($movie_genre_id)){ $updates[] = 'GENRE_ID = '."'$movie_genre_id'"; }
+            if(!empty($movie_release_date)){ $updates[] = 'RELEASE_DATE = '."'$movie_release_date'"; }
+            if(!empty($movie_rating)){ $updates[] = 'RATING = '."'$movie_rating'"; }
+
+            if(!empty($updates))
+            {
+                $sql = 'UPDATE MOVIE SET '.implode(',',$updates).' WHERE MOVIE_ID = '. $_GET['header_movie_id'];
+            }
             // Prepare sql
-            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$movie_title, &$movie_desc, &$movie_genre_id, &$movie_release_date, &$movie_rating,&$header_movie_id));
+            $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql);
             // Execute sql
             if(sqlsrv_execute($stmt) === false)
             {

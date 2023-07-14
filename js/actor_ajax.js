@@ -23,7 +23,7 @@ $(document).ready(function (){
         let inputActorName = $('#input_actor_name').val();
         let inputActorAwardID = $('#input_actor_award_id').val();
 
-        executeActorSQL('POST',inputActorID,inputActorName,inputActorAwardID,url_end);
+        executeActorSQL('POST','',inputActorID,inputActorName,inputActorAwardID,url_end);
         actorClearAll();
     });
 
@@ -40,11 +40,12 @@ $(document).ready(function (){
     // Update actor
     $('#update_actor').on('click', function(event) {
         url_end = '?mode=update';
-        let inputActorID = $('#input_actor_id').val();
+        let headerActorID = $('#header_actor_id').val();
         let inputActorName = $('#input_actor_name').val();
         let inputActorAwardID = $('#input_actor_award_id').val();
+        mode = 'update';
 
-        executeActorSQL('POST',inputActorID,inputActorName,inputActorAwardID,url_end);
+        executeActorSQL('POST',mode,headerActorID,inputActorName,inputActorAwardID,url_end);
         actorClearAll();
     });
 
@@ -62,11 +63,19 @@ $(document).ready(function (){
 
     // ########################################################################
     // ACTOR PAGE BUTTON CLICKS
-    function executeActorSQL(type,actorID,actorName,actorAwardID,url_end) {
+    function executeActorSQL(type,mode,actorID,actorName,actorAwardID,url_end) {
         $('#actor_form').on('submit', function (event) {
             // #######################################################################
             // VARIABLES FOR INSERTING INTO DATABASE
-            event.stopImmediatePropagation();
+            // event.stopImmediatePropagation();
+            event.preventDefault()
+
+            // #######################################################################
+            // VARIABLES FOR INSERTING INTO DATABASE
+            if(mode == 'update')
+            {
+                url_end += '&header_actor_id='+actorID;
+            }
     
             $.ajax({
                 crossOrigin: true,
