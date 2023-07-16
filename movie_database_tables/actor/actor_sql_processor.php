@@ -25,20 +25,20 @@
 
                 $actor_name = strtoupper($actor_name);
 
-                $sql = "INSERT INTO ACTOR (ACTOR_ID, ACTOR_NAME, ACTOR_AWARD_ID)";
-                $sql .= "VALUES (?,?,?)";
+                $sql = 'EXEC sp_insert_actor @ACTOR_ID=?,@ACTOR_NAME=?,@ACTOR_AWARD_ID=?';
+
 
                 // Prepare sql statement
-                $stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql,array(&$actor_id, &$actor_name, &$actor_award_id));
+                $sql_stmnt = sqlsrv_prepare($MSSQL_CONNECTION, $sql,array(&$actor_id, &$actor_name, &$actor_award_id));
 
                 // Execute statement
-                if(sqlsrv_execute($stmt) === false)
+                if(sqlsrv_execute($sql_stmnt) === false)
                 {
                     die(print_r(sqlsrv_errors(), true));
                 }
 
                 // Clean up resources
-                sqlsrv_free_stmt($stmt);
+                sqlsrv_free_stmt($sql_stmnt);
                 sqlsrv_close($MSSQL_CONNECTION);
                 break;
 

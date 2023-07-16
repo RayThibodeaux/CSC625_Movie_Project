@@ -49,11 +49,6 @@ $(document).ready(function (){
                         window.location.href = '/movie_project/index.php';
                    }
 
-                   if(response == 'failed')
-                   {
-                        console.log('Invalid username or password');
-                        alert('Invalid username or password...');
-                   }
                 }
             });
         });
