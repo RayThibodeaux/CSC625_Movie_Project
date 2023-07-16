@@ -40,4 +40,4 @@
         </div>
     </div>
 </form>
-<script><?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/js/index_ajax.js'); ?></script>
+<script><?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/js/index_nav.js'); ?></script>

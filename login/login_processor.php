@@ -35,12 +35,17 @@
                     // Password is correct, user is logged in
                     session_start();
                     $_SESSION['USERNAME'] = $username;
-                    header("Location: ".$_SERVER['DOCUMENT_ROOT']."/movie_database_tables/index.php"); // Redirect to the welcome page
-                    exit();
+                    $response = 'success';
+                    
+                   header('Content-Type: application/json');
+                   echo json_encode($response);
+                   exit();
                 }
             } else {
-                echo $loginError = "Invalid username or password";
-                header("refresh:5; url=".$_SERVER['DOCUMENT_ROOT']."/login/login.php");
+                $response = 'failed';
+                header('Content-Type: application/json');
+                echo json_encode($response);
+                exit();
             }
 
             

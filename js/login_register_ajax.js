@@ -14,7 +14,6 @@ $(document).ready(function (){
 
     // Login button
     $('#login').on('click', function (event) {
-        event.preventDefault();
         url = '/movie_project/login/login_processor.php?mode=login';
         let inputUsername = $('#input_username').val();
         let inputPassword= $('#input_password').val();
@@ -31,8 +30,9 @@ $(document).ready(function (){
     function executeLoginRegister(type,username,password,url) {
         $('#login_form').on('submit', function (event) {
        
-            event.stopImmediatePropagation();
-    
+            // event.stopImmediatePropagation();
+            event.preventDefault();
+            
             $.ajax({
                 crossOrigin: true,
                 url:url,
@@ -44,7 +44,16 @@ $(document).ready(function (){
                     password:password,
                 },
                 success: function (response) {
-                location.reload();
+                   if(response == 'success')
+                   {
+                        window.location.href = '/movie_project/index.php';
+                   }
+
+                   if(response == 'failed')
+                   {
+                        console.log('Invalid username or password');
+                        alert('Invalid username or password...');
+                   }
                 }
             });
         });
