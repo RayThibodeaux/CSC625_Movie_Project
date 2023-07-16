@@ -24,7 +24,7 @@
                     // Prepare and execute the SQL query to retrieve user data
             $sql = "SELECT PASSWORD FROM USER_LOGIN WHERE USERNAME = ?";
             $params = array($username);
-            $stmt = sqlsrv_query($conn, $sql, $params);
+            $stmt = sqlsrv_query($MSSQL_CONNECTION, $sql, $params);
 
             if ($stmt !== false && sqlsrv_has_rows($stmt)) {
                 // Fetch the row
@@ -35,7 +35,7 @@
                     // Password is correct, user is logged in
                     session_start();
                     $_SESSION['USERNAME'] = $username;
-                    header("Location: ".$_SERVER['DOCUMENT_ROOT']."/movie_database_tables/movie/movie_page.php"); // Redirect to the welcome page
+                    header("Location: ".$_SERVER['DOCUMENT_ROOT']."/movie_database_tables/index.php"); // Redirect to the welcome page
                     exit();
                 }
             } else {

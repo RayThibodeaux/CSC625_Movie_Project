@@ -1,111 +1,43 @@
-<?php
-// Database connection details
-$serverName = 'localhost';
-$database = 'AWARD_WINNING_MOVIES';
-$username = 'sa';
-$password = 'CSC625databaseproject';
-
-try {
-    // Establish the database connection
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
-    
-    // Set PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // Prepare and execute the SQL query
-    $sql = "SELECT * FROM MOVIE M
-            INNER JOIN GENRE G ON M.MOVIE_ID = G.GENRE_ID 
-            ORDER BY M.MOVIE_ID";
-
-    $stmt = $conn->query($sql);
-    
-    // Fetch all rows as an associative array
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    // Close the database connection
-    $conn = null;
-} catch (PDOException $e) {
-    // Handle database connection errors
-    echo "Connection failed: " . $e->getMessage();
-    die();
-}
-?>
-
-<!DOCTYPE html>
-<html>
+<style>
+    <?php require($_SERVER['DOCUMENT_ROOT'].'/movie_project/css/stylesheet.css'); ?>
+</style>
+<?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/movie_database_tables/movie/movie_sql_processor.php'); ?>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Data Table</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
 
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin: 20px auto; /* Center the table horizontally */
-        }
-
-        th, td {
-            border: 1px solid #333;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #e6e6e6;
-        }
-    </style>
+    <title>AWARD WINNING MOVIES</title>
 </head>
-<body>
-    <div class="header">
-        <h1>Award Winning Movies</h1>
+<body style="background-color:  #461D7C" ;>
+
+<form id="movie_form">
+    <div class="container-fluid" id="movie_page">
+        <!-- SEARCH BAR ROW ################################################################## -->
+        <div class="row between-xs" id="index_header">
+
+            <div class="col-sm-11 m-4 d-grid gap-4 rcorner-sm border-success lt-purple">
+                <?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/movie_database_tables/movie/index_header.php'); ?>
+            </div>
+
+            <div class="col-sm-3 d-grid gap-3 p-4 height">
+                <?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/movie_database_tables/movie/index_buttons.php'); ?>
+            </div>
+            <img src="img/lsus-logo.png" style="position:absolute;bottom:-125px;left:100px;z-index:1" height="120" />
+
+        </div>
     </div>
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Genre</th>
-            <th>Release Year</th>
-            <th>Rating</th>
-        </tr>
-        <?php
-        // Iterate over each row in the data and display it in the table
-        foreach ($data as $row) {
-            echo "<tr>";
-            echo "<td>" . $row['Title'] . "</td>";
-            echo "<td>" . $row['Description'] . "</td>";
-            echo "<td>" . $row['Genre_Name'] . "</td>";
-            echo "<td>" . $row['Release_Year'] . "</td>";
-            echo "<td>" . $row['Rating'] . "</td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
-</body>
-</html>
+</form>
+<script><?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/js/index_ajax.js'); ?></script>
