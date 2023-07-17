@@ -39,10 +39,8 @@
 
     switch ($_GET['mode']) {
         
-        case 'select':
-            $sql = "SELECT * FROM MOVIE M
-                    INNER JOIN GENRE G ON G.GENRE_ID = M.GENRE_ID";
-
+        case 'select': 
+            $sql = "EXEC sp_select_all_movies";
             $sql_query = sqlsrv_query($MSSQL_CONNECTION, $sql);
 
             while($row = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC))
@@ -59,6 +57,7 @@
             print('</tbody>');
             sqlsrv_free_stmt($sql_query);
             sqlsrv_close($MSSQL_CONNECTION);
+           
             break;
 
         case 'single_select':
@@ -66,14 +65,21 @@
             $sql_results = array();
                 global $MSSQL_CONNECTION;
 
-                $sql = "SELECT M.TITLE,M.DESCRIPTION,G.GENRE_NAME,M.RELEASE_DATE,M.RATING
-                    FROM MOVIE M
-                    INNER JOIN GENRE G ON G.GENRE_ID = M.GENRE_ID
-                    WHERE MOVIE_ID = ".$header_actor_id;
+                $sql = "EXEC sp_select_movie @MOVIE_ID=?";
 
-                $sql_query = sqlsrv_query($MSSQL_CONNECTION, $sql);
+                $sql_stmnt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$header_movie_id));
                 
-                while($row = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC))
+                if($sql_stmnt === false)
+                {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+
+                if(sqlsrv_execute($sql_stmnt) === false)
+                {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+
+                while($row = sqlsrv_fetch_array($sql_stmnt, SQLSRV_FETCH_ASSOC))
                 {
                     print('<tr>');
                     print('<td>' . $row['TITLE'] . '</td>');
