@@ -47,16 +47,16 @@
                 $sql = 'EXEC sp_delete_actor @ACTOR_ID=?';
 
                 // Prepare statement
-                $sql_stmnt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$header_actor_id));
+                $sql_stmt = sqlsrv_prepare($MSSQL_CONNECTION, $sql, array(&$header_actor_id));
 
                 // Execute statement
-                if(sqlsrv_execute($stmt) === false)
+                if(sqlsrv_execute($sql_stmt) === false)
                 {
                     die(print_r(sqlsrv_errors(), true));
                 }
 
                 // Clean up resources
-                sqlsrv_free_stmt($stmt);
+                sqlsrv_free_stmt($sql_stmt);
                 sqlsrv_close($MSSQL_CONNECTION);
                 break;
 
