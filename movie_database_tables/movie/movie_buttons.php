@@ -42,13 +42,6 @@
     <span style="font-size: 15px; font-weight: bold">ACTOR AWARDS</span>
 </button>
 
-<!-- VIEW DIRECTOR PAGE ############################################################ -->
-<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_director"
-        name="view_director">
-    <span style="font-size: 15px; font-weight: bold">DIRECTOR</span>
-</button>
-
-
 <!-- VIEW GENRE PAGE ############################################################ -->
 <button class="button btn-warning btn-primary-spacing height" type="submit" id="view_genre"
         name="view_genre">
