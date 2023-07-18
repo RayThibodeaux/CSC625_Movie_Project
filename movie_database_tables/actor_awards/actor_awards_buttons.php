@@ -31,23 +31,9 @@
 
 <br><div class="col-sm-3" style="line-height:0;padding:0;font-weight:bolder;color: gold;">NAVIGATION</div>
 
-
-
 <!-- VIEW ACTOR ############################################################################## -->
 <button class="button btn-warning height" type="submit" id="view_actor" name="view_actor">
     <span style="font-size: 15px; font-weight: bold">ACTOR</span>
-</button>
-
-<!-- VIEW DIRECTORS ############################################################ -->
-<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_director"
-        name="view_director">
-    <span style="font-size: 15px; font-weight: bold">DIRECTORS</span>
-</button>
-
-<!-- VIEW DIRECTOR AWARDS ############################################################ -->
-<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_director_award"
-        name="view_director_award">
-    <span style="font-size: 15px; font-weight: bold">DIRECTOR AWARDS</span>
 </button>
 
 <!-- VIEW GENRE PAGE ############################################################################## -->
@@ -60,12 +46,3 @@
         name="view_movie">
     <span style="font-size: 15px; font-weight: bold">MOVIES</span>
 </button>
-
-<!-- VIEW MOVIE CAST PAGE ############################################################ -->
-<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_movie_cast"
-        name="view_movie_cast">
-    <span style="font-size: 15px; font-weight: bold">MOVIE CAST</span>
-</button>
-
-
-

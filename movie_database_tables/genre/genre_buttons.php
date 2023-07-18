@@ -42,27 +42,10 @@
     <span style="font-size: 15px; font-weight: bold">ACTOR AWARDS</span>
 </button>
 
-<!-- VIEW DIRECTOR PAGE ############################################################ -->
-<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_director"
-        name="view_director">
-    <span style="font-size: 15px; font-weight: bold">DIRECTOR</span>
-</button>
-
-<!-- VIEW DIRECTOR AWARDS PAGE ############################################################################## -->
-<button class="button btn-warning height" type="submit" id=view_genre" name="view_director_awards">
-    <span style="font-size: 15px; font-weight: bold">DIRECTOR AWARDS</span>
-</button>
-
 <!-- VIEW MOVIE PAGE ############################################################ -->
 <button class="button btn-warning btn-primary-spacing height" type="submit" id="view_movie"
         name="view_movie">
     <span style="font-size: 15px; font-weight: bold">MOVIE</span>
-</button>
-
-<!-- VIEW MOVIE CAST PAGE ############################################################ -->
-<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_movie_cast"
-        name="view_movie_cast">
-    <span style="font-size: 15px; font-weight: bold">MOVIE CAST</span>
 </button>
 
 

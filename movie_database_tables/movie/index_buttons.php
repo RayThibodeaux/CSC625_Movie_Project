@@ -11,7 +11,15 @@
     <span style="font-size: 15px; font-weight: bold">MOVIES</span> 
 </button>
 
+<!-- VIEW ACTOR AWARDS PAGE ############################################################ -->
+<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_actor_awards"
+        name="view_actor_awards">
+    <span style="font-size: 15px; font-weight: bold">ACTOR AWARDS</span>
+</button>
 
-
-
+<!-- VIEW GENRE PAGE ############################################################ -->
+<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_genre"
+        name="view_genre">
+    <span style="font-size: 15px; font-weight: bold">GENRE</span>
+</button>
                    

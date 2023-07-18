@@ -48,10 +48,6 @@
     <span style="font-size: 15px; font-weight: bold">DIRECTOR</span>
 </button>
 
-<!-- VIEW DIRECTOR AWARDS PAGE ############################################################################## -->
-<button class="button btn-warning height" type="submit" id=view_genre" name="view_director_awards">
-    <span style="font-size: 15px; font-weight: bold">DIRECTOR AWARDS</span>
-</button>
 
 <!-- VIEW GENRE PAGE ############################################################ -->
 <button class="button btn-warning btn-primary-spacing height" type="submit" id="view_genre"
@@ -59,11 +55,6 @@
     <span style="font-size: 15px; font-weight: bold">GENRE</span>
 </button>
 
-<!-- VIEW MOVIE CAST PAGE ############################################################ -->
-<button class="button btn-warning btn-primary-spacing height" type="submit" id="view_movie_cast"
-        name="view_movie_cast">
-    <span style="font-size: 15px; font-weight: bold">MOVIE CAST</span>
-</button>
 
 
 
