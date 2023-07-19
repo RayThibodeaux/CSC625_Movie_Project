@@ -3,57 +3,63 @@
 <head>
     <title>Login Page</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
+ body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f2e9ff; 
+        color: #605c00;
+        font-family: Arial, sans-serif;
+    }
 
-        .container {
-            width: 35%;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    .container {
+        width: 35%;
+        padding: 20px;
+        background-color: #fff; 
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
+    h2 {
+        text-align: center;
+        color: #663399; 
+        margin: 0;
+        padding: 10px;
+        border-radius: 5px;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-        }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
 
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
 
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    input[type="submit"],
+    .register-button {
+        background-color: #f0d300; 
+        color: #663399; 
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
+    input[type="submit"]:hover,
+    .register-button:hover {
+        background-color: #d2b300; 
+    }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -85,4 +91,3 @@
 </body>
 <script><?php require($_SERVER['DOCUMENT_ROOT'] . '/movie_project/js/login_register_ajax.js'); ?></script>
 </html>
-
